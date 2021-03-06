@@ -1,0 +1,23 @@
+{
+  "name": "CRUD_admin_products_node_mongo_express",
+  "version": "1.0.0",
+  "description": "Crud Application {API} for admin panel with product management using Node JS, Express JS, Nosql {mongodb}",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradeepshah99/CRUD_admin_products_node_mongo_express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradeepshah99/CRUD_admin_products_node_mongo_express/issues"
+  },
+  "homepage": "https://github.com/pradeepshah99/CRUD_admin_products_node_mongo_express#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
