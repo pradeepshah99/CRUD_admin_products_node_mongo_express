@@ -1,4 +1,5 @@
 const adminData = require('../model/adminSchema');
+const userData = require('../model/userSchema');
 const sha1 = require('sha1');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -81,4 +82,35 @@ let storage = multer.diskStorage({
 })
 
 let upload = multer({ storage: storage }).single('Image');
+
+
+// api code for the user registration
+
+module.exports.userSignup = (req, res)=>
+{
+    upload(req, res, function(err){
+        if(err){
+            console.log(err);
+        }
+        else
+        {
+            let userinfo = new userData();
+            userData.userName = req.body.userName;
+            userinfo.userEmail = req.body.userEmail;
+            userinfo.userPassword = req.body.userPassword;
+
+            if(!req.body.userName || !req.body.userEmail || !req.body.userPassword)
+            {
+                res.status(400).send({message : "Please fill the all fields"});
+            }
+            else
+            {
+                userinfo.save().then((err, result)=>
+                {
+                    if(err) {res.send(err)}else{res.status(200).json({message: `User Added with the id ${req.userInfo._id}`})}
+                })
+            }
+        }
+    })
+}
 

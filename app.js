@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 
+app.use('/images', express.static('uploadData'));
+
 let adminRoutes = require('./routes/routingData');
 app.use('/api/admin/', adminRoutes);
 

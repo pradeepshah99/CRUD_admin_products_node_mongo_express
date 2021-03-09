@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const adminControl = require('../controller/adminController');
+const masterController = require('../controller/allController');
 
-router.post('/register',adminControl.register);
-router.post('/login', adminControl.adminlogin);
+router.post('/register',masterController.register);
+router.post('/login', masterController.adminlogin);
+router.post('/userSignup', masterController.userSignup);
+
 
 
 
