@@ -18,6 +18,15 @@
   },
   "homepage": "https://github.com/pradeepshah99/CRUD_admin_products_node_mongo_express#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.19",
+    "multer": "^1.4.2",
+    "password-hash": "^1.2.2",
+    "sha1": "^1.1.1"
   }
 }
