@@ -11,7 +11,7 @@ const host = process.env.host;
 
 // using the middleware here for this application
 
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 

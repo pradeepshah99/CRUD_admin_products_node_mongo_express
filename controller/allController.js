@@ -1,5 +1,6 @@
 const adminData = require('../model/adminSchema');
 const userData = require('../model/userSchema');
+const profile = require('../model/profileSchema');
 const sha1 = require('sha1');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -88,6 +89,7 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage }).single('Image');
 
 
+
 // api code for the user registration
 module.exports.userSignup = async(req, res, next) => {
     const salt = await bcrypt.genSalt(10);
@@ -153,7 +155,53 @@ userData.find({ email: req.body.email }).then(user => {
     });
 });
 
-//
+// checking user profile
+
+module.exports.userProfile = (req, res)=>
+{
+    let email = req.body.email;
+
+    profile.find({'email':email}, (err, data)=>
+    {
+        if(err) throw err;
+        else if (data.length == 0) {
+            res.json({ 'err': 1, 'msg': 'Profile data not updated' })
+        } else {
+            res.json({ 'err': 0, 'msg': 'updated profile exist', 'data': data })
+        }
+    })
+}
+
+//api to update the profile
+
+module.exports.updateUserProfile = (req, res)=>
+{
+    upload(req, res, function(err){
+        if(err) {res.send({message: "Profile update error" + err})}
+        else{
+            let profileData = new profile();
+            profileData.email = req.body.email;
+            profileData.mobile = req.body.phone;
+            profileData.address = req.body.address;
+            profileData.dob = req.body.dob;
+            profileData.imgname = req.file.filename;
+            profileData.name = req.body.name;
+            console.log('updating the user profile');
+
+            profileData.save().then((err, doc)=>
+            {
+                if(err){res.send({message: "some error"})}
+                else{
+                    res.status(200).json({message: "Profile updated", data: doc});
+                }
+            }).catch(err=>
+                {
+                    res.send({message: "Some thing wrong"+ err})
+                })
+
+        }
+    })
+}
 
 
 
