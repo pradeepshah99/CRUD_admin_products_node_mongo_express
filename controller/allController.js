@@ -184,7 +184,7 @@ module.exports.updateUserProfile = (req, res)=>
             profileData.mobile = req.body.phone;
             profileData.address = req.body.address;
             profileData.dob = req.body.dob;
-            profileData.imgname = req.file.filename;
+            profileData.imgname = req.body.imgname;
             profileData.name = req.body.name;
             console.log('updating the user profile');
 
